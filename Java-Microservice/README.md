@@ -1,13 +1,14 @@
 # Java-Microservice
 
-###Pre-requisites
-####Required: 
+### Pre-requisites
+
+#### Required: 
 * Java8
 * PostgreSQL
-####Recommended:
+#### Recommended:
 * pgAdmin (PostgreSQL Client)
 
-###Start Service
+### Start Service
 After starting the service locally. Hit the following URL to access all the service endpoints.
 > http://localhost:8080/swagger-ui.html#/user-information-controller
 
