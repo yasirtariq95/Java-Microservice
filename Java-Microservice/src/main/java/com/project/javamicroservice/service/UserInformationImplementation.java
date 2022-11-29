@@ -2,8 +2,12 @@ package com.project.javamicroservice.service;
 
 import com.project.javamicroservice.domain.UserInformation;
 import com.project.javamicroservice.repo.UserInformationRepo;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.xml.bind.DatatypeConverter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Date;
@@ -66,5 +70,11 @@ public class UserInformationImplementation implements UserInformationService{
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public Claims parseJWT(String secret, String token) {
+        Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secret)).parseClaimsJws(token).getBody();
+        return claims;
     }
 }

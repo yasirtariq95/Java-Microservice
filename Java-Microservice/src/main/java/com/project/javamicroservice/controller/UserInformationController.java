@@ -2,6 +2,7 @@ package com.project.javamicroservice.controller;
 
 import com.project.javamicroservice.domain.UserInformation;
 import com.project.javamicroservice.service.UserInformationService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
@@ -41,5 +42,13 @@ public class UserInformationController {
         Date secondDate = java.sql.Date.valueOf(dateTwo);
         List<UserInformation> userInformation = userInformationService.findUsersBetweenADateRange(firstDate, secondDate);
         return userInformation;
+    }
+
+    // a test endpoint to parse jwt token
+    @GetMapping("/token")
+    public Claims getParseToken(@RequestParam String secret, @RequestParam String token)
+    {
+        Claims claims = userInformationService.parseJWT(secret, token);
+        return claims;
     }
 }
